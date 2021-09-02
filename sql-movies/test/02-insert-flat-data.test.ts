@@ -30,23 +30,38 @@ const insertActors = (actors: string[]) => {
 };
 
 const insertKeywords = (keywords: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into keywords values` +
+    keywords.map(keyword => `('${escape(keyword)}')`).join(",")
+  );  
 };
 
 const insertDirectors = (directors: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into directors values` +
+    directors.map(director => `('${escape(director)}')`).join(",")
+  ); 
 };
 
 const insertGenres = (genres: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into genres values` +
+    genres.map(genre => `('${escape(genre)}')`).join(",")
+  );  
 };
 
 const insertProductionCompanies = (companies: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into companies values` +
+    companies.map(companie => `('${escape(companie)}')`).join(",")
+  );  
 };
 
 const insertMovies = (movies: Movie[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into movies values` +
+    movies.map(movie => `('${movie.}' ${movie.})`).join(",")
+  ); 
 };
 
 describe("Insert Flat Data", () => {
