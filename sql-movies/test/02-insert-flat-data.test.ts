@@ -59,8 +59,12 @@ const insertProductionCompanies = (companies: string[]) => {
 
 const insertMovies = (movies: Movie[]) => {
   return (
-    `insert into movies (imdb_id,popularity,budget,revenue,original_title,cast,homepage,director,tagline,keywords,overview,runtime,genres,production_companies,release_date,budget_adj,revenue_adj) values` +
-    movies.map(movie => `('${movie.imdbId}', ${movie.popularity}, ${movie.budget}, ${movie.revenue}, ${movie.originalTitle}, ${movie.cast}, '${escape(movie.homepage)}', '${movie.directors}', '${movie.tagline}', '${escape(movie.keywords.join(","))}', '${movie.overview}', ${movie.runtime}, '${escape(movie.genres.join(","))}', '${escape(movie.productionCompanies.join(","))}', '${movie.releaseDate}', ${movie.budgetAdjusted}, ${movie.revenueAdjusted})`).join(",")
+    `insert into movies (imdb_id,popularity,budget,revenue,original_title,cast,homepage,director,tagline,
+      keywords,overview,runtime,genres,production_companies,release_date,budget_adj,revenue_adj) values` +
+    movies.map(movie => `('${movie.imdbId}', ${movie.popularity}, ${movie.budget}, ${movie.revenue}, '${escape(movie.originalTitle)}',
+     '${movie.cast}', '${escape(movie.homepage)}', '${escape(movie.directors.join(","))}', '${movie.tagline}', '${escape(movie.keywords.join(","))}', 
+     '${escape(movie.overview)}', ${movie.runtime}, '${escape(movie.genres.join(","))}', '${escape(movie.productionCompanies.join(","))}',
+      '${movie.releaseDate}', ${movie.budgetAdjusted}, ${movie.revenueAdjusted})`).join(",")
   ); 
 };
 
