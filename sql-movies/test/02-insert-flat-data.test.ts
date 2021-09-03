@@ -31,36 +31,36 @@ const insertActors = (actors: string[]) => {
 
 const insertKeywords = (keywords: string[]) => {
   return (
-    `insert into keywords values` +
+    `insert into keywords (keyword) values` +
     keywords.map(keyword => `('${escape(keyword)}')`).join(",")
   );  
 };
 
 const insertDirectors = (directors: string[]) => {
   return (
-    `insert into directors values` +
+    `insert into directors(full_name) values` +
     directors.map(director => `('${escape(director)}')`).join(",")
   ); 
 };
 
 const insertGenres = (genres: string[]) => {
   return (
-    `insert into genres values` +
+    `insert into genres(genre) values` +
     genres.map(genre => `('${escape(genre)}')`).join(",")
   );  
 };
 
 const insertProductionCompanies = (companies: string[]) => {
   return (
-    `insert into companies values` +
-    companies.map(companie => `('${escape(companie)}')`).join(",")
+    `insert into PRODUCTION_COMPANIES (company_name) values` +
+        companies.map(companie => `('${escape(companie)}')`).join(",")
   );  
 };
 
 const insertMovies = (movies: Movie[]) => {
   return (
-    `insert into movies values` +
-    movies.map(movie => `('${movie.}' ${movie.})`).join(",")
+    `insert into movies (imdb_id,popularity,budget,revenue,original_title,cast,homepage,director,tagline,keywords,overview,runtime,genres,production_companies,release_date,budget_adj,revenue_adj) values` +
+    movies.map(movie => `('${movie.imdbId}', ${movie.popularity}, ${movie.budget}, ${movie.revenue}, ${movie.originalTitle}, ${movie.cast}, '${escape(movie.homepage)}', '${movie.directors}', '${movie.tagline}', '${escape(movie.keywords.join(","))}', '${movie.overview}', ${movie.runtime}, '${escape(movie.genres.join(","))}', '${escape(movie.productionCompanies.join(","))}', '${movie.releaseDate}', ${movie.budgetAdjusted}, ${movie.revenueAdjusted})`).join(",")
   ); 
 };
 
@@ -82,8 +82,8 @@ describe("Insert Flat Data", () => {
         await db.insert(insertActors(ch));
       }
 
-      const count = await db.selectSingleRow(selectCount(ACTORS));
-      expect(count.c).toBe(7617);
+      const count = await db.selectSingleRow(selectCount(ACTORS, ));
+      expect(count.c).toBe(7617); 
 
       const actor = await db.selectSingleRow(selectActorByName("Tom Hardy"));
       expect(actor.id).not.toBeNaN();
