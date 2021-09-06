@@ -59,7 +59,7 @@ const insertProductionCompanies = (companies: string[]) => {
 
 const insertMovies = (movies: Movie[]) => {
   return (
-    `insert into movies ()    
+    `insert into ${MOVIES} (    
   imdb_id,
   popularity,
   budget,
@@ -79,7 +79,7 @@ const insertMovies = (movies: Movie[]) => {
      ${movie.budget}, 
      ${movie.budgetAdjusted},
      ${movie.revenue}, 
-     ${movie.revenueAdjusted}
+     ${movie.revenueAdjusted},
      '${escape(movie.originalTitle)}',     
      '${escape(movie.homepage)}',      
      '${escape(movie.tagline ? movie.tagline : " ")}',     
