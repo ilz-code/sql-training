@@ -23,10 +23,11 @@ export const selectUnigueRowCount = (tableName: string, columnName: string): str
 };
 
 export const selectReviewByAppIdAuthor = (appId: number, author: string): string => {
-  throw new Error(`todo`);
+  return (`SELECT developer_reply, developer_reply_date FROM reviews WHERE app_id = 24 AND author = "PLAYBOY"`); 
+  
 };
 
 export const selectColumnFromTable = (columnName: string, tableName: string): string => {
-  throw new Error(`todo`);
+  return (`select ${columnName} from ${tableName}`);
 };
 

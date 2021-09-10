@@ -21,15 +21,16 @@ describe("Simple Queries", () => {
         const query = `
         select developer, count(id) as count from apps
         group by developer
-        order by count(id) desc
+        order by count(id) desc,
+            developer asc
         limit 3`;
 
         const result = await db.selectMultipleRows(query);
         expect(result).toEqual([
             { count: 30, developer: "Webkul Software Pvt Ltd" },
             { count: 25, developer: "POWr.io" },
-            { count: 24, developer: "SpurIT" }
-        ]); //Omega
+            { count: 24, developer: "Omega" }
+        ]); 
         done();
     }, minutes(1));
 
@@ -43,7 +44,7 @@ describe("Simple Queries", () => {
         or substr(date_created, 7, 4) = "2015" 
         or substr(date_created, 7, 4) = "2016"
         group by substr(date_created, 7, 4)               
-        `; // date(date_created) >= date('01.01.2014') and date(date_created) <= date('31.12.2016')
+        `; 
         const result = await db.selectMultipleRows(query);
         expect(result).toEqual([
             { year: "2014", review_count: 6157 },
