@@ -56,9 +56,9 @@ describe("Foreign Keys", () => {
     it("should be able to delete app", async done => {
         const appId = 355;
         const query = `
-        delete from app_categories where app_id = 355 
-        and delete from app_pricing_plans where app_id =355 
-        and delete from apps where id = ${appId}`;
+        DELETE FROM apps_categories WHERE app_id = 355;
+        DELETE FROM apps_pricing_plans WHERE app_id = 355;
+        DELETE FROM apps WHERE id = 355`;
         try {
             await db.delete(query);
           } catch (e) {}
